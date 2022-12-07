@@ -3,6 +3,10 @@ pipeline {
     environment {
         JENKINS_AUTHOR = 'ADITHYA'
     }
+    parameters {
+        choice(name: 'VERSION', choices: ['1.1.0','1.2.0','1.3.0'], description: '')
+        booleanParam(name: 'executeTest', defaultValue: true, description: '')
+    }
     stages {
         stage("build") {
             steps {
@@ -13,6 +17,11 @@ pipeline {
             }
         }
         stage("test") {
+            when {
+                expression {
+                     params.executeTest
+                }
+            }
             steps {
                 script {
                     echo "Test"
@@ -21,10 +30,8 @@ pipeline {
         }
         stage("deploy") {
             steps {
-                echo "Getting Credentials"
-                withCredentials([usernamePassword(credentialsId: 'dockernexus', passwordVariable: 'PWD', usernameVariable: 'USER')]){
-                        echo "${USER} ${PWD} Docker Login"
-                    }
+                echo "Getting Credentials for ${params.VERSION}"
+                
             }
         }
     }
