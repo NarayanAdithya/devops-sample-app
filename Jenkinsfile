@@ -1,3 +1,4 @@
+def gv
 pipeline {
     agent any
     environment {
@@ -8,11 +9,15 @@ pipeline {
         booleanParam(name: 'executeTest', defaultValue: true, description: '')
     }
     stages {
+        stage("init") {
+            script{
+                gv = load "script.groovy"
+            }
+        }
         stage("build") {
             steps {
                 script {
-                    echo "Author Of Jenkins is ${JENKINS_AUTHOR}"
-                    echo "Build"
+                   gv.buildApp()
                 }
             }
         }
