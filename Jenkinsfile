@@ -19,6 +19,15 @@ pipeline {
                 }
             }
         }
+        stage("deploy") {
+            steps {
+                echo "Getting Credentials"
+                withCredentials(
+                    [usernamePassword(credentials: 'dockernexus', usernameVariable: USER, passwordVariable: PWD)]){
+                        echo "${USER} ${PWD} Docker Login"
+                    }
+            }
+        }
     }
     post {
         always {
