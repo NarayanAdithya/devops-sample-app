@@ -22,8 +22,7 @@ pipeline {
         stage("deploy") {
             steps {
                 echo "Getting Credentials"
-                withCredentials(
-                    [usernamePassword(credentialsId: 'dockernexus', usernameVariable: USER, passwordVariable: PWD)]){
+                withCredentials([usernamePassword(credentialsId: 'dockernexus', passwordVariable: 'PWD', usernameVariable: 'USER')]){
                         echo "${USER} ${PWD} Docker Login"
                     }
             }
