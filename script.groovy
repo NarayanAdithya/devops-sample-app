@@ -1,3 +1,6 @@
+def packageApp(){
+    sh "mvn package"
+}
 def buildApp() {
     sh "docker build -t narayanadithya/nanajanashia:jenkins1.0 ."
 }

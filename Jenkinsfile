@@ -11,6 +11,14 @@ pipeline {
             }
             
         }
+        stage("package") {
+            steps{
+                script{
+                    gv.packageApp()
+                }
+            }
+            
+        }
         stage("build") {
             steps{
                 script{
