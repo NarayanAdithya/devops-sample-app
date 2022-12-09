@@ -2,7 +2,7 @@ def packageApp(){
     sh "mvn package"
 }
 def buildApp() {
-    sh "docker build -t narayanadithya/jenkins-${BRANCH_NAME}-1.0 ."
+    sh "docker build -t narayanadithya/nanajanashia:jenkins-${BRANCH_NAME}-1.0 ."
 }
 
 def testApp() {
