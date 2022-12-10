@@ -1,6 +1,6 @@
 
 def printApp(){
-    sh "Executing Fine"
+    echo "Executing Fine"
 }
 
 return this
