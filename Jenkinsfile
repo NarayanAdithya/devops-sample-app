@@ -33,7 +33,7 @@ pipeline {
         stage("deploy") {
            steps{
             script{
-                buildImage()
+                buildImage("jsl","1.5")
             }
            }
         }
